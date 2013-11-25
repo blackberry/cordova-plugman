@@ -249,7 +249,7 @@ module.exports = {
                                                 if (xml_helpers.pruneXML(doc, xml_to_prune, selector)) {
                                                     // were good, write out the file!
                                                     // TODO: don't write out on every change, do it once.
-                                                    fs.writeFileSync(filepath, doc.write({indent: 4}), 'utf-8');
+                                                    fs.writeFileSync(filepath, "\ufeff" + doc.write({indent: 4}), 'utf-8');
                                                 } else {
                                                     // uh oh
                                                     throw new Error('pruning xml at selector "' + selector + '" from "' + filepath + '" during config uninstall went bad :(');
@@ -374,7 +374,7 @@ module.exports = {
                                         var doc = xml_helpers.parseElementtreeSync(filepath);
                                         if (xml_helpers.graftXML(doc, xml_to_graft, selector)) {
                                             // were good, write out the file!
-                                            fs.writeFileSync(filepath, doc.write({indent: 4}), 'utf-8');
+                                            fs.writeFileSync(filepath, "\ufeff" + doc.write({indent: 4}), 'utf-8');
                                         } else {
                                             // uh oh
                                             throw new Error('grafting xml at selector "' + selector + '" from "' + filepath + '" during config install went bad :(');
